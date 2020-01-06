@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
+import { UserService } from "./user.service";
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'day5';
+  public users;
+  constructor(private userService: UserService) {
+    this.userService.getUsers().toPromise().then(users => {
+      this.users = users;
+      console.log(this.users)
+    });
+  }
 }
